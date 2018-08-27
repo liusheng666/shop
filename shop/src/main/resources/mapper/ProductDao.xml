@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.ProductDao">
+    <resultMap id="ppp" type="Product">
+        <id column="pcode" property="pcode"/>
+        <collection property="spone" javaType="Spone"/>
+        <collection property="sptwo" javaType="Sptwo"/>
+        <collection property="spthree" javaType="Spthree"/>
+    </resultMap>
+    <select id="productList" resultType="Product">
+    select * from product pd where pd.sptwocode =#{twoid} limit 0,6
+    </select>
+    <select id="pDuct" resultMap="ppp">
+    SELECT pd.*,so.sponename,st.sptwoname,sh.spthreename  FROM product pd
+INNER JOIN spone so ON so.sponecode = pd.sponecode
+INNER JOIN sptwo st ON st.sptwocode = pd.sptwocode
+INNER JOIN spthree sh ON sh.spthreecode = pd.spthreecode
+WHERE pd.pcode =#{pid}
+    </select>
+</mapper>

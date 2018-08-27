@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.UserDao">
+	<select id="userLogin" resultType="User">
+     SELECT * FROM `user` us WHERE us.uname=#{uname} and us.upassword=#{upassword}
+    </select>
+
+	<select id="usergrxx" resultType="Usermassage">
+        SELECT*FROM usermassage WHERE  uid=#{uid}
+    </select>
+
+	<select id="usergengdgrxx" resultType="Userxq">
+        SELECT *FROM userxq WHERE userid=#{userid}
+    </select>
+
+	<select id="usercount" resultType="int">
+        SELECT COUNT(0) FROM USER WHERE uname=#{uname}
+    </select>
+
+	<update id="userxiugai">
+        UPDATE `usermassage` SET uname=#{uname},realname=#{realname},email=#{email},uage=#{uage},usex=#{usex} WHERE uid=#{uid}
+    </update>
+
+	<update id="usergengdxx">
+          UPDATE `userxq` SET hunyin=#{hunyin},shouru=#{shouru},chengyuan=#{chengyuan},xueli=#{xueli},zhiye=#{zhiye} WHERE userid=#{userid}
+    </update>
+
+	<insert id="insertgrxx" keyProperty="mcode" keyColumn="mcode">
+          INSERT INTO usermassage(uid,email,realname,usex,uname,uage) VALUES (#{uid},#{email},#{realname},#{usex},#{uname},#{uage})
+    </insert>
+
+	<select id="grxxcount" resultType="int">
+         SELECT COUNT(0) FROM usermassage WHERE uid=#{uid}
+    </select>
+
+	<select id="gengdxxcount" resultType="int">
+        SELECT COUNT(0) FROM userxq WHERE userid=#{userid}
+    </select>
+
+	<insert id="insertgengdxx" keyProperty="mcode" keyColumn="mcode">
+       INSERT INTO userxq(hunyin,shouru,chengyuan,xueli,zhiye,guanzhusp,userid) VALUES (#{hunyin},#{shouru},#{chengyuan},#{xueli},#{zhiye},#{guanzhusp},#{userid})
+    </insert>
+</mapper>
