@@ -10,60 +10,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 
 /**
- * 用户控制类
+ * 用户控制器
  */
 @Controller
 public class UserController {
-
     @Autowired
     private UserService userService;
 
     /**
      * 用户登录
-     *
-     * @param user
-     * @return
-     */
+     * */
     @RequestMapping("/userlogin")
-    public String userLogin(User user, HttpSession session) {
+    private String userLogin(User user, HttpSession session){
         User user1 = userService.userLogin(user);
-        if (user1 == null) {
-            return "forward:dengl";
+        if(user1 != null){
+            //用户登录成功user
+            session.setAttribute("user",user1);
+            return "forward:index";
         }
-        session.setAttribute("user", user1);
-        return "forward:index";
+        return "forward:dengl";
     }
 
-    /**
-     * 用户权限控制
-     *
-     * @param session
-     * @return
-     */
-    @RequestMapping("/userzx")
-    public String userZx(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        //用户未登录去登录页面
-        if (user == null) {
-            return "forward:dengl";
-        }
-        //去往用户中心
-        return "forward:ger_zhongx?userid=" + user.getUid();
-    }
-
-    /**
-     * 去往用户中心
-     *
-     * @param userid
-     * @return
-     */
-    @RequestMapping("/ger_zhongx")
-    public String ger_zhongx(int userid) {
-        System.out.println("sadasd" + userid);
-        return "ger_zhongx";
-    }
     /**
      * 用户退出
      * */
@@ -72,38 +44,39 @@ public class UserController {
         session.invalidate();
         return "forward:index";
     }
+
     /**
      * 个人信息
-     *
-     * @return
-     */
+     * */
     @RequestMapping("/gerexx")
-    public String ger_xinx(HttpSession session, Usermassage usermassage) {
-        User user = (User) session.getAttribute("user");
-        int uid = user.getUid();
-        String uname1 = user.getUname();
-        /* Date date1=(Date) user.getRegtime();*/
-        System.out.printf("uid:" + uid);
-        int count1 = userService.grxxcount(uid);
-        if (count1 > 0) {
+    public String gerexx(HttpSession session,Usermassage usermassage){
+        User user =(User) session.getAttribute("user");
+        int uid=user.getUid();
+        String uname1=user.getUname();
+       /* Date date1=(Date) user.getRegtime();*/
+        System.out.printf("uid:"+uid);
+        int count1=userService.grxxcount(uid);
+        if(count1>0){
             usermassage.setUid(uid);
-            Usermassage usermassage1 = userService.usergrxx(usermassage);
-            session.setAttribute("usermassage1", usermassage1);
+            Usermassage usermassage1= userService.usergrxx(usermassage);
+            session.setAttribute("usermassage1",usermassage1);
             return "forward:ger_xinx";
-        } else {
+        }else {
             usermassage.setUid(uid);
             usermassage.setEmail("请输入邮箱");
             usermassage.setRealname("请输入真实姓名");
             usermassage.setUsex(2);
             usermassage.setUname(uname1);
-            usermassage.setUage(java.sql.Date.valueOf("2018-8-21"));
-            int num1 = userService.insertgrxx(usermassage);
-            if (num1 > 0) {
+            usermassage.setUage(Date.valueOf("2018-8-21"));
+            int num1=userService.insertgrxx(usermassage);
+            if(num1>0){
                 return "forward:gerexx";
             }
         }
         return "forward:gerexx";
+
     }
+
     /**
      * 更多个人信息
      * */
@@ -144,7 +117,7 @@ public class UserController {
         if(num1>0){
             return "forward:gerexx";
         }
-        return "forward:gerexx";
+            return "forward:gerexx";
     }
 
     /**
@@ -152,11 +125,11 @@ public class UserController {
      * */
     @RequestMapping("/xiugaigengdgrxx")
     public String xiugaigengdgrxx(Userxq userxq){
-        int num1= userService.usergengdxx(userxq);
+       int num1= userService.usergengdxx(userxq);
         System.out.printf("num1:"+num1);
-        if(num1>0){
-            return "forward:gengdgrxx";
-        }
+       if(num1>0){
+           return "forward:gengdgrxx";
+       }
         return "forward:gengdgrxx";
     }
 
@@ -169,6 +142,24 @@ public class UserController {
 
         return userService.usercount(uname);
     }
+
+    /**
+     * 注册
+     * */
+    @RequestMapping("/zhuceuser")
+    public String zhuceuser(User user){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        user.setRegtime(new Date(System.currentTimeMillis()));
+        System.out.printf("当前时间"+new Date(System.currentTimeMillis()));
+        user.setUtype(0);
+        user.setImage("images/qie.jpg");
+        int num=userService.zhuce(user);
+        System.out.printf("注册num:"+num);
+        if(num>0){
+            return  "forward:dengl";
+        }
+        return  "forward:zhuc";
+    }
+
+
 }
-
-

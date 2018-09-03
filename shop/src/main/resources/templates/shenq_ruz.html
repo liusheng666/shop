@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta charset="utf-8">
 <title>WangID通城——个人注册</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
@@ -27,10 +27,10 @@
 	<div class="ger_zhuc_beij">
 		<div class="ger_zhuc_biaot">
 			<ul>
-				<li><a  th:href="zhuc">个人注册</a></li>
+				<li><a th:href="zhuc">个人注册</a></li>
 				<i>丨</i>
-				<li class="ger_border_color"><a href="shenq_ruz.html">申请入驻</a></li>
-				<p>我已经入驻，现在就<a class="ftx-05 ml10" href="dengl.html">登录</a></p>
+				<li class="ger_border_color"><a th:href="shenq_ruz" >申请入驻</a></li>
+				<p>我已经入驻，现在就<a class="ftx-05 ml10" th:href="login">登录</a></p>
 			</ul>
 		</div>
 		<div class="zhuc_biaod zhuc_biaod_liuy">

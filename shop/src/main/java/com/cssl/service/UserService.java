@@ -4,6 +4,10 @@ import com.cssl.pojo.User;
 import com.cssl.pojo.Usermassage;
 import com.cssl.pojo.Userxq;
 
+
+/**
+ * 用户service
+ */
 public interface UserService {
 
     /**
@@ -55,4 +59,10 @@ public interface UserService {
      * 添加更多个人信息
      * */
     public int insertgengdxx(Userxq userxq);
+
+    /**
+     * 注册
+     * */
+    public int zhuce(User user);
+
 }

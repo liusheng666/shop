@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.ChakandingdanDao">
+
+    <resultMap type="Porder" id="PorderMapper">
+        <id column="porderid" property="porderid"/>
+        <association property="user" javaType="User"/>
+        <association property="shiping_method" javaType="Shiping_method"/>
+        <association property="pay" javaType="Pay"/>
+    </resultMap>
+
+    <select id="chakanmydingdan" resultMap="PorderMapper">
+        SELECT p.ocode,p.otime,p.pdanhao,p.uid,p.oprice,p.paddress,u.uname,u.utel,s.sname,s.stel,pa.pname FROM porder p INNER JOIN `user` u ON p.uid=u.uid INNER JOIN shiping_method s ON p.kdcompany=s.scode INNER JOIN pay pa ON p.fukuan=pa.pcode WHERE porderid=#{porderid}
+    </select>
+    <resultMap type="Orderproduct" id="orderproductMapper">
+        <id column="opcode" property="opcode"/>
+        <association property="product" javaType="Product"/>
+    </resultMap>
+    <select id="chakanmydingdanXq" resultMap="orderproductMapper">
+        SELECT o.opcode,o.pcode,o.pnum,o.pprice,o.pintegral,o.ocode,p.pname,p.pphoto,p.pintroduce FROM orderProduct o INNER JOIN product p ON o.opcode=p.pcode WHERE o.ocode=#{ocode}
+    </select>
+</mapper>

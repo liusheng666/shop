@@ -37,7 +37,7 @@
 		<ul class="header-right">
 			<li class="denglu dengl_hou">
 				<div>
-					<a class="red"  th:text="${session.user.uname}">Hi~山的那边是海</a>
+					<a class="red" href="dengl.html">Hi~山的那边是海</a>
 					<i class="icon_plus_nickname"></i>
 					<i class="ci-leftll">
 						<s class="jt">◇</s>
@@ -45,24 +45,24 @@
 				</div>
 				<div class="dengl_hou_xial_k">
 					<div class="zuid_xiao_toux">
-						<a href="#"><img th:src="${session.user.image}"></a>
+						<a href="#"><img src="images/toux.png"></a>
 					</div>
 					<div class="huiy_dengj"> 
 						<a class="tuic_" th:href="tuichu">退出</a>
 					</div>
 					<div class="toub_zil_daoh">
 						<a href="#">待处理订单</a>
-						<a th:href="wod_shouc">我的收藏</a>
+						<a href="#">我的收藏</a>
 						<a th:href="gerexx">个人资料</a>
 					</div>
 				</div>
 				</li> 
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps" th:href="wod_shouc">我的收藏</a></li>
+			<li class="denglu"><a class="ing_ps" href="#">我的收藏</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps1" th:href="shenq_ruz">申请入驻</a></li>
+			<li class="denglu"><a class="ing_ps ps1" href="#">申请入驻</a></li>
 			<li class="shu"></li>
-			<li class="denglu"><a class="ing_ps ps2" th:href="bangz_zhongx">帮助中心</a></li>
+			<li class="denglu"><a class="ing_ps ps2" href="#">客户服务</a></li>
 			<li class="shu"></li>
 			<li class="shouji bj">
 				<a class="ing_ps ps3" href="#">手机通城</a>
@@ -91,18 +91,18 @@
 	<div class="beij_center">
 		<div class="wode_tongc_logo">
 			<a class="tongc_logo" href="#"></a>
-			<a class="fanh_shouy" th:href="index" target="_blank">返回首页</a>
+			<a class="fanh_shouy" th:href="listmydingdan" target="_blank">返回首页</a>
 		</div>
 		<div class="navitems">
 			<ul>
-				<li><a th:href="userzx"><span>首页</span> </a></li>
+				<li><a th:href="listmydingdan"><span>首页</span> </a></li>
 				<li>
 					<div class="zhangh_dl">
 						<div class="zhangh_dt"><span>账号设置</span><i>◇</i></div>
 						<div class="zhangh_dd">
 							<a th:href="gerexx">个人信息</a>
 							<a href="zhangh_anq.html">账户安全</a>
-							<a th:href="shouh_diz">收货地址</a>
+							<a href="shouh_diz.html">收货地址</a>
 						</div>
 					</div> 
 				</li>
@@ -117,7 +117,7 @@
 		    </div>
 		    <div id="settleup_2014">
 		    	<div class="cw_icon">
-		    		<a th:href="gouw_che"><span>购物车<em>3</em>件</span></a>
+		    		<a href="gouw_che.html"><span>购物车<em>3</em>件</span></a>
 		    		<i class="ci-right ">
 						<s class="jt">◇</s>
 					</i>
@@ -182,7 +182,7 @@
 							</div>
 						</div>
 						<div class="user_name_Level">
-							<p class="user_name" th:text="${session.user.uname}">山的那边是海</p>
+							<p class="user_name" title="山的那边是海">山的那边是海</p>
 							<p class="userLevel">会员：<span class="levelId icon_plus_nickname"></span></p> 
 						</div>
 					</div>
@@ -246,13 +246,13 @@
 					<div class="diy_top">
 						<ul>
 							<h3>订单中心</h3>
-							<li><a th:href="wod_dingd">我的订单</a></li>
+							<li><a href="wod_dingd.html">我的订单</a></li>
 							<li><a href="#">退换货单</a></li>
 							<li><a href="#">评价晒单</a></li>
 						</ul>
 						<ul>
 							<h3>管理中心</h3>
-							<li><a  th:href="wod_shouc">我的收藏</a></li>
+							<li><a href="wod_shouc.html">我的收藏</a></li>
 							<li><a href="#">我的预约</a></li>
 							<li><a href="#">我的咨询</a></li>
 							<li><a href="#">投诉管理</a></li>

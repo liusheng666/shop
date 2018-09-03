@@ -1,7 +1,6 @@
 package com.cssl.interceptor;
 
 import com.cssl.pojo.User;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;

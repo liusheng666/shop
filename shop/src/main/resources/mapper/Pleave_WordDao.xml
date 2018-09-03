@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.Pleave_WordDao">
+    <resultMap id="ppp" type="Pleave_Word">
+        <collection property="user" javaType="User"/>
+    </resultMap>
+    <select id="pw" resultMap="ppp">
+      SELECT ur.image,ur.uname,pw.* FROM  pleave_word pw
+      INNER JOIN `User` ur ON ur.uid = pw.uid
+       <where>
+           <if test="productid != '' and productid != null and productid != 0">
+               pw
+           </if>
+           <if test=""></if>
+           <if test=""></if>
+           <if test=""></if>
+           <if test=""></if>
+           <if test=""></if>
+           <if test=""></if>
+           <if test=""></if>
+       </where>
+    </select>
+    <select id="pwCount" resultType="int">
+       SELECT COUNT(*) FROM pleave_word pw
+            WHERE pw.pcode=#{pid}
+    </select>
+    <select id="pwCounts" resultType="int">
+       SELECT COUNT(*) FROM pleave_word pw
+        WHERE pw.pcode=#{pid} AND (pw.pfuwu+pw.pshangpin+pw.pwuliu)/3 >=4
+    </select>
+    <select id="pwMap" resultType="Map">
+        SELECT  ROUND(AVG(pw.pfuwu),2) pfuwu, ROUND(AVG(pw.pwuliu),2) pwuliu,ROUND(AVG(pw.pshangpin),2) pshangpin FROM pleave_word pw
+         <where>
+             <if test="pid != null and pid != '' and pid != 0">
+                 pw.pstcode =#{pid}
+             </if>
+             <if test="sid != null and sid != '' and sid != 0 and ppid != null and ppid != '' and ppid != 0">
+                 pw.pstcode  IN (SELECT so.stcode FROM  store so WHERE so.strange=(SELECT st.strange FROM store st WHERE st.stcode =#{ppid}))
+             </if>
+         </where>
+    </select>
+</mapper>

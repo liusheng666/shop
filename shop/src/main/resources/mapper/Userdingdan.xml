@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.UserdingdanDao">
+
+    <resultMap type="Porder" id="PorderMapper">
+        <id column="porderid" property="porderid"/>
+        <association property="user" javaType="User"/>
+        <association property="pay" javaType="Pay"/>
+        <association property="dingdanzt" javaType="Dingdanzt"/>
+    </resultMap>
+
+    <select id="mydingdao" resultMap="PorderMapper">
+        SELECT p.porderid,u.uname,p.oprice ,p.otime ,p.ostate,p.ocode,pa.pname,d.ddzt  FROM `porder` p  INNER JOIN `user` u ON p.uid=u.uid INNER JOIN pay pa ON p.fukuan=pa.pcode  INNER JOIN dingdanzt d ON p.ostate=d.ddztid  WHERE p.uid=#{uid} LIMIT 0,3
+    </select>
+
+    <select id="mydingdaoAll" resultMap="PorderMapper">
+        SELECT p.porderid,u.uname,p.oprice ,p.otime ,p.ostate,p.ocode,pa.pname,d.ddzt  FROM `porder` p  INNER JOIN `user` u ON p.uid=u.uid INNER JOIN pay pa ON p.fukuan=pa.pcode  INNER JOIN dingdanzt d ON p.ostate=d.ddztid  WHERE p.uid=#{uid}
+    </select>
+
+    
+    <select id="mydingdanorder" resultType="Orderproduct">
+        SELECT * FROM orderProduct WHERE ocode=#{ocode} LIMIT 0,1
+    </select>
+
+    <select id="mydingdanimage" resultType="Product">
+       SELECT *FROM product WHERE pcode=#{pcode}
+    </select>
+
+
+</mapper>

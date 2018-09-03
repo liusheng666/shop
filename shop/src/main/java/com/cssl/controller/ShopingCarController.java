@@ -13,6 +13,12 @@ public class ShopingCarController {
     public String gouw_che(){
         return  "gouw_che";
     }
+
+    @RequestMapping("/gouw")
+    public String gouw(int num,int pid){
+        System.out.println("num:::::::::"+num+"::::::::::::pid"+pid);
+        return "asd";
+    }
 }
 
 

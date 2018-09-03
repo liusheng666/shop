@@ -32,4 +32,5 @@ public class Product {
     private Sptwo sptwo;
     private Spthree spthree;
 
+
 }

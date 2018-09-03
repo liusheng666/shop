@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.OrderProductDao">
+    <resultMap id="ppp" type="OrderProduct">
+        <id column="pcode" property="pcode"/>
+        <collection property="product" javaType="Product"/>
+    </resultMap>
+    <select id="orderList" resultMap="ppp">
+        SELECT od.pcode,pd.pphoto,pd.pprice,pd.pname,COUNT(od.pcode) num FROM orderproduct od
+        INNER JOIN product pd ON pd.pcode = od.pcode
+        GROUP BY pcode
+        ORDER BY num  DESC
+        <if test="fenye != null and fenye != ''">
+            LIMIT 0,5
+        </if>
+
+    </select>
+    <select id="orderList2" resultMap="ppp">
+        SELECT od.pcode,pd.pphoto,pd.pprice,pd.pname,pd.pintroduce,COUNT(od.pcode) num FROM orderproduct od
+		INNER JOIN product pd ON pd.pcode = od.pcode
+		GROUP BY pcode
+		HAVING pcode IN (SELECT pt.pcode FROM product pt WHERE pt.pguishu IN (SELECT so.stcode FROM store so WHERE so.strange=#{typeid}))
+		ORDER BY num  DESC
+		LIMIT 0,5
+    </select>
+    <select id="orderList3" resultMap="ppp">
+        SELECT od.pcode,pd.pphoto,pd.pprice,pd.pname,pd.pintroduce,COUNT(od.pcode) num FROM orderproduct od
+		INNER JOIN product pd ON pd.pcode = od.pcode
+		GROUP BY pcode
+		HAVING pcode IN (SELECT pt.pcode FROM product pt WHERE pt.pguishu=#{guishu})
+		ORDER BY num  DESC
+		LIMIT 0,5
+
+    </select>
+</mapper>

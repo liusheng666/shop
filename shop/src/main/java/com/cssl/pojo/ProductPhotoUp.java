@@ -16,5 +16,4 @@ public class ProductPhotoUp {
    //商品id
    private int  productcode;
 
-   private ProductPhotoBigUp productPhotoBigUp;
 }

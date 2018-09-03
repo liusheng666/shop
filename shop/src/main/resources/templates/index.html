@@ -66,7 +66,7 @@
 			</li>					
 		</ul>
 		<ul class="header-right">
-			<li class="denglu">Hi~<a class="red" th:href="${session.user != null ? 'userzx' : 'dengl'}" th:text="${session.user != null ? session.user.uname : '请先登录'}">请登录!</a> <a href="zhuc.html">[免费注册]</a></li>
+			<li class="denglu" >Hi~<a class="red" th:href="${session.user != null ?'listmydingdan':'dengl'}" th:text="${session.user != null ? session.user.uname:'请登录'}">请登录</a> <a th:href="zhuc">[免费注册]</a></li>
 			<li class="shu"></li>
 			<li class="denglu"><a class="ing_ps"  th:href="${session.user !=null ? 'wod_shouc' : 'dengl'}">我的收藏</a></li>
 			<li class="shu"></li>
@@ -192,16 +192,11 @@
 <!--轮播图-->
 <div id="lunbo">
 	<ul id="one">
-		<li><a href=""><img src="./images/banner1.jpg" ></a></li>
-		<li><a href=""><img src="./images/banner1.jpg"></a></li>
-		<li><a href=""><img src="./images/banner.jpg"></a></li>
-		<li><a href=""><img src="./images/banner1.jpg"></a></li>
+		<li th:each="nplist,npStat:${navigationPhotoList}"><a th:href="@{store(storeid=${nplist.storeid})}"><img th:src="${'images/img/'+nplist.npfile}" th:width="1920px" th:height="451px"></a></li>
 	</ul>
 	<ul id="two">
 		<li class="on">1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
+		<li th:each="nplist,npStat:${navigationPhotoList}" th:text="${npStat.index+1}">2</li>
 	</ul>
 	<!--轮播图左右箭头-->
 	<div class="slider-page">
@@ -403,14 +398,8 @@
 					<div class="js-silder ws-slider">
 						<div class="silder-scroll">
 							<div class="silder-main">
-								<div class="silder-main-img">
-									<a href="#"><img src="images/liuceng_1.jpg" alt=""></a>
-								</div>
-								<div class="silder-main-img">
-									<a href="#"><img src="images/2.png" alt=""></a>
-								</div>
-								<div class="silder-main-img">
-									<a href="#"><img src="images/3.png" alt=""></a>
+								<div class="silder-main-img" th:each="prolist,dasStat:${one2list.navigationPhotoList}">
+									<a href="#"><img th:src="${'images/img/'+prolist.npfile}" alt=""></a>
 								</div>
 							</div>
 						</div>
@@ -511,29 +500,9 @@
 				</div>
 				<div class="bd">
 					<ul class="picList">
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 506 .00</span></div>
-						</li>
-						<li>
-							<div class="pic"><a href="#" target="_blank"><img src="images/rem_shangp1.jpg" /></a></div>
-							<div class="title"><a href="#" target="_blank">佳能(Canon)EOS80D单反套机</a><span>¥ 7940 .00</span></div>
+						<li th:each="opList,proStat:${orderProductList}">
+							<div class="pic"><a href="#" target="_blank"><img th:src="${opList.product.pphoto}"/></a></div>
+							<div class="title"><a href="#" target="_blank" th:text="${opList.product.pname}">佳能(Canon)EOS80D单反套机</a><span th:text="${opList.product.pprice}">¥ 506 .00</span></div>
 						</li>
 					</ul>
 				</div>

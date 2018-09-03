@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta charset="utf-8">
 <title>WangID通城——登录</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
@@ -11,7 +11,6 @@
 <!-- 
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
  <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script> -->
- 
 </head> 
 <body>
 <!--dengl-->
@@ -49,8 +48,8 @@
 			<form th:action="userlogin" method="post">
 			<div class="kengl_kuang">
 				<div class="txt_kuang">
-					<input type="text" name="uname" class="itxt"  placeholder="邮箱/用户名/已验证手机">
-					<input type="password" name="upassword" class="itxt"  placeholder="密码">
+					<input name="uname" type="text" class="itxt"  placeholder="邮箱/用户名/已验证手机">
+					<input name="upassword" type="password" class="itxt"  placeholder="密码">
 				</div>
 				<div class="remember">
 					<div class="fl">
@@ -66,7 +65,7 @@
 			</form>
 			<div class="corp_login">
 				<div class="mingb_shoq"><a href="#">名榜授权登录！</a></div>
-				<div class="regist_link"><a th:href="zhuc" target="_blank"><b></b>立即注册</a></div>
+				<div class="regist_link"><a th:href="zhuc"  target="_blank"><b></b>立即注册</a></div>
 			</div>
 		</div> 
 	</div>

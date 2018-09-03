@@ -22,5 +22,7 @@ public class Spone {
 
     private  List<Spthree> three2list;
 
+    private List<NavigationPhoto> navigationPhotoList;
+
 
 }

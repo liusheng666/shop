@@ -19,4 +19,22 @@ INNER JOIN sptwo st ON st.sptwocode = pd.sptwocode
 INNER JOIN spthree sh ON sh.spthreecode = pd.spthreecode
 WHERE pd.pcode =#{pid}
     </select>
+    <select id="productListTime" resultType="Product">
+        SELECT * FROM product pt
+		WHERE pt.pguishu=#{guishu}
+		ORDER BY pt.startime DESC
+		LIMIT 0,6
+    </select>
+    <select id="productListOne" resultType="Product">
+        SELECT * FROM product pt
+		WHERE pt.pguishu=#{guishu}
+		ORDER BY pt.startime DESC
+		LIMIT 0,3
+    </select>
+    <select id="productListTwo" resultType="Product">
+        SELECT * FROM product pt
+		WHERE pt.pguishu=#{guishu}
+		ORDER BY pt.startime DESC
+		LIMIT 3,3
+    </select>
 </mapper>

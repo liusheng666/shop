@@ -14,4 +14,5 @@ public class NavigationPhoto {
     private int nptype;
     private int  productid;
     private int istrue;
+    private int storeid;
 }

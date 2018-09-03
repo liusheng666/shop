@@ -8,9 +8,11 @@ import com.cssl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 用户
+ */
 @Service
-public class UserServiceImpl  implements UserService {
-
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     @Override
@@ -64,4 +66,10 @@ public class UserServiceImpl  implements UserService {
      * 添加更多个人信息
      * */
     public int insertgengdxx(Userxq userxq){return  userDao.insertgengdxx(userxq);}
+
+    /**
+     * 注册
+     * */
+    public int zhuce(User user){return  userDao.zhuce(user);}
+
 }

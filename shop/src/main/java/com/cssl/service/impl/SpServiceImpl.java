@@ -1,13 +1,7 @@
 package com.cssl.service.impl;
 
-import com.cssl.dao.ProductDao;
-import com.cssl.dao.SpOneDao;
-import com.cssl.dao.SpThreeDao;
-import com.cssl.dao.SpTwoDao;
-import com.cssl.pojo.Product;
-import com.cssl.pojo.Spone;
-import com.cssl.pojo.Spthree;
-import com.cssl.pojo.Sptwo;
+import com.cssl.dao.*;
+import com.cssl.pojo.*;
 import com.cssl.service.SpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +19,8 @@ public class SpServiceImpl implements  SpService{
     private SpThreeDao spThreeDao;
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private NavigationPhotoDao navigationPhotoDao;
     /**
      * 查询一级分类
      * @return
@@ -57,8 +53,10 @@ public class SpServiceImpl implements  SpService{
             for (int j = 0 ; j<spTwoList.size();j++){
                 int twoid = spTwoList.get(j).getSptwocode();
                 pList = productDao.productList(twoid);
+                List<NavigationPhoto> navigationPhotoList = navigationPhotoDao.navigationPhotoDown(oneid);
                 List<Spthree> spThreeList = spThreeDao.three2List(oneid);
                 spOneList.get(i).getTwo2list().get(j).setProductList(pList);
+                spOneList.get(i).setNavigationPhotoList(navigationPhotoList);
                 spOneList.get(i).setThree2list(spThreeList);
             }
         }

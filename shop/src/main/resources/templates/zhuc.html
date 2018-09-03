@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta charset="utf-8">
 <title>WangID通城——个人注册</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/ziy.css">
-<!--  <script src="js/jquery-1.11.3.min.js" ></script>
-<script src="js/index.js" ></script>  --> 
-<!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
-<!-- 
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
- <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.source.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+	<script type="text/javascript" src="static/jquery.min.js"></script>
+	<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript">
+
+	</script>
+
+
 </head>
 <body>
 <!--dengl-->
@@ -26,86 +30,88 @@
 	<div class="ger_zhuc_beij">
 		<div class="ger_zhuc_biaot">
 			<ul>
-				<li class="ger_border_color"><a  th:href="zhuc">个人注册</a></li>
+				<li class="ger_border_color"><a th:href="zhuc">个人注册</a></li>
 				<i>丨</i>
 				<li><a th:href="shenq_ruz">申请入驻</a></li>
 				<p>我已经注册，现在就<a class="ftx-05 ml10" th:href="dengl">登录</a></p>
 			</ul>
 		</div>
+		<form th:action="zhuceuser"  method="post">
 		<div class="zhuc_biaod">
 			<div class="reg-items" >
               	<span class="reg-label">
                 	<label for="J_Name">用户名：</label>
               	</span>
-              	<input   class="i-text" type="text">
-              	<!--备注————display使用 inline-block-->
-              	<div class="msg-box">
+					<input  class="i-text" type="text" name="uname">
+				<!--备注————display使用 inline-block-->
+              <!--	<div class="msg-box">
                 	<div class="msg-box" style="display: none;">
 	                  	<div class="msg-weak" style="display: inline-block;"> <i></i>
 	                    	<div class="msg-cont">4-20个字符，支持汉字、字母、数字及“-”、“_”组合</div>
 	                  	</div>
                 	</div>
                 	<div class="msg-weak err-tips"  style="display: inline-block;"><div>请输入用户名</div></div>
-            	</div>
-            	<span class="suc-icon"></span>
+            	</div>-->
+            	<!--<span class="suc-icon"></span>-->
             </div>
             <div class="reg-items" >
               	<span class="reg-label">
                 	<label for="J_Name">设置密码：</label>
               	</span>
-              	<input   class="i-text" type="text">
+              	<input   class="i-text" type="text" name="upassword">
               	<!--备注————display使用 inline-block-->
-              	<div class="msg-box">
+              	<!--<div class="msg-box">
                 	<div class="msg-box" style="display: none;">
 	                  	<div class="msg-weak" style="display: inline-block;"> <i></i>
 	                    	<div class="msg-cont">键盘大写锁定已打开，请注意大小写!</div>
 	                  	</div>
                 	</div>
                 	<div class="msg-weak err-tips"  style="display:none;"><div>请输入密码</div></div>
-            	</div> 
+            	</div> -->
             </div>
-            <div class="reg-items" >
+           <!-- <div class="reg-items" >
               	<span class="reg-label">
                 	<label for="J_Name">确认密码：</label>
               	</span>
-              	<input   class="i-text" type="text" disabled="disabled"> 
-              	<!--备注————display使用 inline-block-->
+              	<input   class="i-text" type="text" disabled="disabled" >
+              	&lt;!&ndash;备注————display使用 inline-block&ndash;&gt;
               	<div class="msg-box">
                 	<div class="msg-weak err-tips"  style="display: none;"><div>密码不一样</div></div>
             	</div> 
-            </div>
+            </div>-->
             <div class="reg-items" >
               	<span class="reg-label">
                 	<label for="J_Name">手机号码：</label>
               	</span>
-              	<input   class="i-text" type="text">
+              	<input   class="i-text" type="text" name="utel">
               	<!--备注————display使用 inline-block-->
-              	<div class="msg-box"> 
+              	<!--<div class="msg-box">
                 	<div class="msg-weak err-tips"  style="display:none;"><div>手机号不能为空</div></div>
-            	</div> 
+            	</div> -->
             </div> 
-            <div class="reg-items" >
+           <!-- <div class="reg-items" >
               	<span class="reg-label">
                 	<label for="J_Name">手机号码：</label>
               	</span>
               	<input   class="i-text i-short" type="text">
-              	<div class="check check-border" style="position:relative;left:0">
+              &lt;!&ndash;	<div class="check check-border" style="position:relative;left:0">
                    	<a class="check-phone" style="padding:11px 10px 14px 10px;*line-height:60px;">获取短信验证码</a>
                   	<span class="check-phone disable" style="display: none;"><em>60</em>秒后重新获取</span>
                   <a class="check-phone" style="display: none;padding:11px 10px 14px 10px">重新获取验证码</a>
-                </div>
-              	<!--备注————display使用 inline-block-->
-              	<div class="msg-box"> 
+                </div>&ndash;&gt;
+              	&lt;!&ndash;备注————display使用 inline-block&ndash;&gt;
+              	&lt;!&ndash;<div class="msg-box">
                 	<div class="msg-weak err-tips"  style="display:none;"><div>请输入短信验证码</div></div>
-            	</div> 
-            </div>
+            	</div> &ndash;&gt;
+            </div>-->
             <div class="reg-items" >
               	<span class="reg-label">
                 	<label for="J_Name"> </label>
               	</span> 
               	<div class="dag_biaod">
-              		<input type="checkbox" value="english" >
-              		阅读并同意
+					<input type="radio"  name="uxieyi" class="jdradio" value="1">
+					<label class="mr10">阅读并同意</label>
+
               		<a href="#" class="ftx-05 ml10">《wangdi通城用户注册协议》</a>
               		<a href="#" class="ftx-05 ml10">《隐私协议》</a>
               	</div>
@@ -117,6 +123,7 @@
               	<input class="reg-btn" value="立即注册" type="submit">
             </div>
 		</div>
+		</form>
         <div class="xiaogg">
             <img src="images/cdsgfd.jpg">
         </div>

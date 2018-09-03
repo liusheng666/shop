@@ -7,6 +7,6 @@
     select * from navigationphoto np where np.nptype=0 and np.istrue=0
     </select>
     <select id="navigationPhotoDown" resultType="NavigationPhoto">
-    select * from navigationphoto np where np.nptype =#{twoid} and np.istrue=0
+    select * from navigationphoto np where np.nptype =#{oneid} and np.istrue=0
     </select>
 </mapper>
